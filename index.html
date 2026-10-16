@@ -2028,6 +2028,14 @@
   body:not(.can-write) .pd-remove{ display:none !important; }
   #mHeader, #mBrand, #mBackdrop{ display:none; }
 
+  /* Ordinateur : bloc Prev / Next / Show thumbnails un peu plus haut et un peu plus lisible */
+  @media (min-width:701px){
+    #sidebar{ padding-bottom:calc(26px + clamp(18px, 4vh, 40px)) !important; }
+    .side-footer, .side-footer button{ color:#6f6f6f !important; }
+    .side-footer button:hover{ color:#111 !important; }
+    .sf-count{ color:#9c9c9c !important; }
+  }
+
   /* ════════ Version téléphone ════════ */
   @media (max-width:700px){
     :root{ --mh:52px; --mb:calc(52px + env(safe-area-inset-bottom, 0px)); }
