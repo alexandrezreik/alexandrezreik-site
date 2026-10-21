@@ -2135,9 +2135,15 @@
     /* Accueil : ENTER au-dessus de la barre système */
     #splash #splash-enter{ bottom:calc(40px + env(safe-area-inset-bottom, 0px)) !important; }
     /* Accueil téléphone : photo verticale, nom dans le noir du haut, voile léger en bas pour ENTER */
-    #splash.sp-mobile .splash-slide img.sp-main{ object-position:10% 50% !important; }
-    #splash.sp-mobile:not(.sp-side) .splash-content{ top:21% !important; bottom:auto !important; }
-    #splash.sp-mobile .splash-overlay{ background:linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0) 72%, rgba(0,0,0,0.38) 100%) !important; }
+    #splash.sp-mobile .splash-slide img.sp-main{ object-position:16% 50% !important; }
+    #splash.sp-mobile:not(.sp-side) .splash-content{ top:63% !important; bottom:auto !important; left:40% !important; right:0 !important; }
+    #splash.sp-mobile #splash-enter{ left:40% !important; right:0 !important; }
+    #splash.sp-mobile .splash-content .splash-name{ font-size:1rem !important; letter-spacing:0.18em !important; padding-left:0.18em !important; }
+    #splash.sp-mobile .splash-overlay{ background:none !important; }
+    #splash.sp-mobile .splash-content .splash-name, #splash.sp-mobile .splash-content .splash-sub,
+    #splash.sp-mobile #splash-enter, #splash.sp-mobile #splash-enter span{ color:#1c1c1c !important; }
+    #splash.sp-mobile .splash-content .splash-sub{ opacity:0.75 !important; }
+    @media (max-width:375px){ #splash.sp-mobile .splash-content .splash-name{ font-size:0.88rem !important; } }
     #splash.sp-mobile .splash-content .splash-name{ font-size:1.12rem !important; letter-spacing:0.2em !important; padding-left:0.2em !important; }
     #splash.sp-mobile .splash-content .splash-sub{ font-size:0.62rem !important; }
   }
@@ -3491,9 +3497,10 @@ async function showSplash(){
     // In another life, Beirut n°4 (deux hommes face à la mer, N&B) — élargie en 16:9 (bords étirés) et silhouettes centrées (original : 9f1fe050621bc487e8476a1d228c4169 ; version recadrée : 23ec39eba310b22c9a54c7728b87f619)
     // Salt in the air n°24 (deux silhouettes dans l'eau scintillante, N&B) : { src:'photos/7c0d9734d6f3b2de8226197802377dc0.jpg', cover:true } — avec top:15% et voile dégradé
     const pool = [{ id:'__splash_fixed__', src:'photos/18e9a626a8a7f8256e5f1400e2215ec9.jpg', place:'', year:'', cover:true }];
-    // Téléphone : photo verticale propre à l'accueil mobile (Paris, ongoing n°10 — l'ouvrier en orange)
+    // Téléphone : photo verticale propre à l'accueil mobile (Endless Days n°2 — l'enfant et l'arbre)
+    // ancienne : Paris, ongoing n°10 (l'ouvrier en orange) : 6fedc6e461a8d58c50190c2685f77644
     if (window.matchMedia('(max-width:700px)').matches){
-      pool[0] = Object.assign({}, pool[0], { src:'photos/6fedc6e461a8d58c50190c2685f77644.jpg' });
+      pool[0] = Object.assign({}, pool[0], { src:'photos/fdbc5e59dca61327da537be80e652e60.jpg' });
       document.getElementById('splash').classList.add('sp-mobile');
     }
     const bg = document.getElementById('splash-bg');
