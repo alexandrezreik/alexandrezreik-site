@@ -2150,6 +2150,14 @@
     #splash.sp-mobile #splash-enter, #splash.sp-mobile #splash-enter span{ font-size:0.62rem !important; letter-spacing:0.24em !important; font-weight:400 !important; }
     #splash.sp-mobile #splash-enter{ top:calc(6% + 46px) !important; }
     @media (max-width:375px){ #splash.sp-mobile .splash-content .splash-name{ font-size:0.84rem !important; } }
+    /* Accueil téléphone (pluie) : texte plus lisible — léger assombrissement en haut, typo un peu plus marquée */
+    #splash.sp-mobile .splash-overlay{ background:linear-gradient(to bottom, rgba(0,0,0,.42) 0%, rgba(0,0,0,.22) 18%, rgba(0,0,0,0) 32%) !important; }
+    #splash.sp-mobile .splash-content .splash-name{ font-weight:400 !important; }
+    #splash.sp-mobile .splash-content .splash-sub{ font-size:0.6rem !important; }
+    #splash.sp-mobile #splash-enter, #splash.sp-mobile #splash-enter span{ font-size:0.68rem !important; }
+    #splash.sp-mobile .splash-content .splash-sub, #splash.sp-mobile #splash-enter, #splash.sp-mobile #splash-enter span{ font-weight:500 !important; }
+    #splash.sp-mobile .splash-content .splash-name, #splash.sp-mobile .splash-content .splash-sub,
+    #splash.sp-mobile #splash-enter, #splash.sp-mobile #splash-enter span{ text-shadow:0 0 2px rgba(0,0,0,.6), 0 1px 10px rgba(0,0,0,.7) !important; }
   }
   @media (max-width:700px) and (orientation:landscape){
     .carousel{ height:calc(100vh - var(--mh) - var(--mb)) !important; height:calc(100svh - var(--mh) - var(--mb)) !important; }
