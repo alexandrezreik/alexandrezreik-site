@@ -2135,20 +2135,20 @@
     /* Accueil : ENTER au-dessus de la barre système */
     #splash #splash-enter{ bottom:calc(40px + env(safe-area-inset-bottom, 0px)) !important; }
     /* Accueil téléphone : photo verticale, nom dans le noir du haut, voile léger en bas pour ENTER */
-    #splash.sp-mobile .splash-slide img.sp-main{ object-position:50% 100% !important; }
-    #splash.sp-mobile .splash-overlay{ background:none !important; }
-    #splash.sp-mobile:not(.sp-side) .splash-content{ top:12% !important; bottom:auto !important; left:0 !important; right:0 !important; }
+    #splash.sp-mobile .splash-slide img.sp-main{ object-position:44% 50% !important; }
+    #splash.sp-mobile .splash-overlay{ background:linear-gradient(rgba(0,0,0,0.22) 0%, rgba(0,0,0,0) 30%) !important; }
+    #splash.sp-mobile:not(.sp-side) .splash-content{ top:9% !important; bottom:auto !important; left:0 !important; right:0 !important; }
     #splash.sp-mobile .splash-content .splash-name{ font-size:1.05rem !important; letter-spacing:0.2em !important; padding-left:0.2em !important; }
     #splash.sp-mobile .splash-content .splash-sub{ font-size:0.62rem !important; opacity:1 !important; }
     /* une seule couleur pour tout le texte, ENTER regroupé sous le nom dans la brume */
     #splash.sp-mobile .splash-content .splash-name, #splash.sp-mobile .splash-content .splash-sub,
-    #splash.sp-mobile #splash-enter, #splash.sp-mobile #splash-enter span{ color:#2a2a2a !important; text-shadow:none !important; }
+    #splash.sp-mobile #splash-enter, #splash.sp-mobile #splash-enter span{ color:#fff !important; text-shadow:none !important; }
     #splash.sp-mobile #splash-enter{ font-size:0.82rem !important; letter-spacing:0.26em !important; font-weight:500 !important; position:fixed !important; top:calc(12% + 88px) !important; bottom:auto !important; left:0 !important; right:0 !important; opacity:1 !important; }
     /* Accueil téléphone : typo plus discrète */
     #splash.sp-mobile .splash-content .splash-name{ font-size:0.9rem !important; letter-spacing:0.2em !important; padding-left:0.2em !important; font-weight:300 !important; }
     #splash.sp-mobile .splash-content .splash-sub{ font-size:0.54rem !important; letter-spacing:0.46em !important; padding-left:0.46em !important; }
     #splash.sp-mobile #splash-enter, #splash.sp-mobile #splash-enter span{ font-size:0.62rem !important; letter-spacing:0.24em !important; font-weight:400 !important; }
-    #splash.sp-mobile #splash-enter{ top:calc(12% + 72px) !important; }
+    #splash.sp-mobile #splash-enter{ top:calc(9% + 72px) !important; }
     @media (max-width:375px){ #splash.sp-mobile .splash-content .splash-name{ font-size:0.84rem !important; } }
   }
   @media (max-width:700px) and (orientation:landscape){
@@ -3504,7 +3504,7 @@ async function showSplash(){
     // Téléphone : Endless Days n°1 entière, prolongée seulement en haut (continuité du ciel), bas de la photo intact, enfants recentrés (original : 7523c50b1af14ff849a96570bc467085)
     // anciennes : Paris, ongoing n°10 : 6fedc6e461a8d58c50190c2685f77644 ; Endless Days n°2 : fdbc5e59dca61327da537be80e652e60
     if (window.matchMedia('(max-width:700px)').matches){
-      pool[0] = Object.assign({}, pool[0], { src:'photos/4044ec6e0e4941c421833ddb9a523a30.jpg' });
+      pool[0] = Object.assign({}, pool[0], { src:'photos/003a451dcd096f6f0e2e732cd06b7efd.jpg' });
       document.getElementById('splash').classList.add('sp-mobile');
     }
     const bg = document.getElementById('splash-bg');
