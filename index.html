@@ -2152,6 +2152,9 @@
     @media (max-width:375px){ #splash.sp-mobile .splash-content .splash-name{ font-size:0.84rem !important; } }
     /* Accueil téléphone (pluie) : texte plus lisible — léger assombrissement en haut, typo un peu plus marquée */
     #splash.sp-mobile .splash-overlay{ background:linear-gradient(to bottom, rgba(0,0,0,.42) 0%, rgba(0,0,0,.22) 18%, rgba(0,0,0,0) 32%) !important; }
+    #splash.sp-mobile:not(.sp-side) .splash-content{ top:11% !important; }
+    #splash.sp-mobile #splash-enter{ top:calc(11% + 48px) !important; }
+    #splash.sp-mobile .splash-overlay{ background:linear-gradient(to bottom, rgba(0,0,0,.40) 0%, rgba(0,0,0,.26) 20%, rgba(0,0,0,0) 36%) !important; }
     #splash.sp-mobile .splash-content .splash-name{ font-weight:400 !important; }
     #splash.sp-mobile .splash-content .splash-sub{ font-size:0.6rem !important; }
     #splash.sp-mobile #splash-enter, #splash.sp-mobile #splash-enter span{ font-size:0.68rem !important; }
