@@ -24,6 +24,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alexandre Zreik</title>
+<!-- Accueil : la photo se télécharge dès l'arrivée, sans attendre le reste de la page -->
+<link rel="preload" as="image" href="photos/18e9a626a8a7f8256e5f1400e2215ec9.jpg" media="(min-width:701px)" fetchpriority="high">
+<link rel="preload" as="image" href="photos/splash-m-80e5f6f7.jpg" media="(max-width:700px)" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;1,400&family=Inter:wght@300;400;500;600&family=Jost:wght@200;300;400&family=Tajawal:wght@200;300&family=Figtree:wght@300;400;500&family=Inter+Tight:wght@300;400;500&family=Hanken+Grotesk:wght@300;400;500&family=Instrument+Serif&family=League+Spartan:wght@800;900&display=swap" rel="stylesheet">
 <style>
@@ -2166,6 +2169,21 @@
     .carousel{ height:calc(100vh - var(--mh) - var(--mb)) !important; height:calc(100svh - var(--mh) - var(--mb)) !important; }
     .carousel-header{ display:none !important; }
   }
+  /* Ordinateur : accueil Paris, ongoing n°9 (plongeon) — photo entière calée à gauche, le garçon jamais coupé ;
+     à droite, l'eau sombre se prolonge dans sa propre couleur et le texte s'y pose, ENTER sous le nom */
+  @media (min-width:701px){
+    #splash.sp-dive .splash-slide{ background:linear-gradient(180deg,rgb(46,52,50) 5%, rgb(47,55,54) 14%, rgb(60,67,67) 23%, rgb(62,70,70) 32%, rgb(57,65,64) 41%, rgb(62,72,72) 50%, rgb(73,83,84) 59%, rgb(60,70,70) 68%, rgb(55,67,64) 77%, rgb(36,52,45) 86%, rgb(22,51,35) 95%) !important; }
+    #splash.sp-dive.dive-panel .splash-slide img.sp-main{ object-fit:contain !important; object-position:0% 50% !important; }
+    #splash.sp-dive .splash-overlay{ background:none !important; }
+    #splash.sp-dive #diveFade{ position:absolute; top:0; bottom:0; pointer-events:none; z-index:1; background:linear-gradient(180deg,rgb(46,52,50) 5%, rgb(47,55,54) 14%, rgb(60,67,67) 23%, rgb(62,70,70) 32%, rgb(57,65,64) 41%, rgb(62,72,72) 50%, rgb(73,83,84) 59%, rgb(60,70,70) 68%, rgb(55,67,64) 77%, rgb(36,52,45) 86%, rgb(22,51,35) 95%); -webkit-mask-image:linear-gradient(90deg, rgba(0,0,0,0) 0%, #000 100%); mask-image:linear-gradient(90deg, rgba(0,0,0,0) 0%, #000 100%); }
+    #splash.sp-dive:not(.dive-panel) #diveFade{ display:none; }
+    #splash.sp-dive .splash-content{ text-align:center !important; }
+    #splash.sp-dive #splash-enter{ position:fixed !important; bottom:auto !important; right:auto !important; margin:0 !important; transform:translateX(-50%) !important; }
+  }
+  /* Accueil : tout apparaît d'un coup — plus d'apparition progressive du nom, de PHOTOGRAPHER ni d'ENTER */
+  #splash .splash-name, #splash .splash-sub, #splash #splash-enter, #splash .splash-content{ animation:none !important; opacity:1 !important; filter:none !important; transform:none !important; }
+  #splash .splash-slide{ transition:none !important; }
+  #splash.sp-mobile #splash-enter{ transform:none !important; }
 </style>
 </head>
 <body>
@@ -3511,11 +3529,12 @@ async function showSplash(){
     // Alegria n°2 (paillote, mer, bateaux) : { src:'photos/318d33e96efa2072e7340a5ac1c13466.jpg', cover:true }
     // In another life, Beirut n°4 (deux hommes face à la mer, N&B) — élargie en 16:9 (bords étirés) et silhouettes centrées (original : 9f1fe050621bc487e8476a1d228c4169 ; version recadrée : 23ec39eba310b22c9a54c7728b87f619)
     // Salt in the air n°24 (deux silhouettes dans l'eau scintillante, N&B) : { src:'photos/7c0d9734d6f3b2de8226197802377dc0.jpg', cover:true } — avec top:15% et voile dégradé
+    // Ordinateur : Beyrouth n°4 élargie (essai refusé le 22/10 : Paris, ongoing n°9 a6cb0f7e3b29a119ee8e859fc30e6c02, classe sp-dive)
     const pool = [{ id:'__splash_fixed__', src:'photos/18e9a626a8a7f8256e5f1400e2215ec9.jpg', place:'', year:'', cover:true }];
     // Téléphone : Paris, ongoing n°11 (gouttes de pluie) — précédentes : Paris, ongoing n°22 c8ff62891881948857ec8bcaca58aa10 ; Alegria n°15 4de545ea6fe1a36184a908513a8ed4a4 ; Salt in the air n°15 003a451dcd096f6f0e2e732cd06b7efd ; Endless Days n°1 7523c50b1af14ff849a96570bc467085
     // anciennes : Paris, ongoing n°10 : 6fedc6e461a8d58c50190c2685f77644 ; Endless Days n°2 : fdbc5e59dca61327da537be80e652e60
     if (window.matchMedia('(max-width:700px)').matches){
-      pool[0] = Object.assign({}, pool[0], { src:'photos/80e5f6f7b2423e75737cb490378a5d2e.jpg' });
+      pool[0] = { id:'__splash_fixed__', src:'photos/splash-m-80e5f6f7.jpg', place:'', year:'', cover:true };
       document.getElementById('splash').classList.add('sp-mobile');
     }
     const bg = document.getElementById('splash-bg');
@@ -3751,6 +3770,45 @@ function onLbKey(e){
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', place); else place();
   [100, 400, 1000, 2500].forEach(t => setTimeout(place, t));
+})();
+
+// Ordinateur : mise en page de l'accueil « plongeon » (Paris, ongoing n°9, 2200×1467)
+(function(){
+  const IW = 2200, IH = 1467;
+  function lay(){
+    const sp = document.getElementById('splash');
+    if (!sp || !sp.classList.contains('sp-dive') || window.innerWidth <= 700) return;
+    const c = sp.querySelector('.splash-content'), nm = c && c.querySelector('.splash-name'), en = document.getElementById('splash-enter');
+    if (!c || !nm) return;
+    const W = window.innerWidth, H = window.innerHeight;
+    const rw = H * IW / IH, free = W - rw;
+    let cx, cy;
+    if (free >= 280){                       // écran large : photo entière à gauche, texte dans l'eau prolongée
+      sp.classList.add('dive-panel');
+      let f = document.getElementById('diveFade');
+      if (!f){ f = document.createElement('div'); f.id = 'diveFade'; (sp.querySelector('.splash-slide.current') || sp).appendChild(f); }
+      const fw = Math.min(300, rw * 0.2);
+      f.style.left = Math.round(rw - fw) + 'px'; f.style.width = Math.round(fw + 2) + 'px';
+      cx = rw + free / 2 - (free < 420 ? 0 : 0); cy = H * 0.46;
+      if (free < 420) cx = rw - fw / 2 + (free + fw / 2) / 2;
+    } else {                                // écran plus carré : photo pleine, texte dans l'eau à droite
+      sp.classList.remove('dive-panel');
+      cx = W * 0.78; cy = H * 0.46;
+    }
+    c.style.setProperty('left', 'auto', 'important'); c.style.setProperty('right', 'auto', 'important');
+    c.style.setProperty('bottom', 'auto', 'important'); c.style.setProperty('width', 'max-content', 'important');
+    c.style.setProperty('left', Math.round(cx - c.offsetWidth / 2) + 'px', 'important');
+    c.style.setProperty('top', Math.round(cy - (nm.offsetTop + nm.offsetHeight / 2)) + 'px', 'important');
+    if (en){
+      const r = c.getBoundingClientRect();
+      en.style.setProperty('left', Math.round(cx) + 'px', 'important');
+      en.style.setProperty('top', Math.round(parseFloat(c.style.top) + c.offsetHeight + 4) + 'px', 'important');
+    }
+  }
+  window.addEventListener('resize', lay);
+  window.addEventListener('load', lay);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(lay);
+  [50, 300, 900, 2000].forEach(t => setTimeout(lay, t));
 })();
 
 // ── Téléphone : en-tête, menu latéral, barre de navigation en bas ──
