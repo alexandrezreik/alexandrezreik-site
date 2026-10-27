@@ -3853,7 +3853,7 @@ function onLbKey(e){
     if(!sp||!en||window.innerWidth<=700) return;
     const c=sp.querySelector('.splash-content'); if(!c) return;
     const r=c.getBoundingClientRect(), w=en.offsetWidth;
-    en.style.setProperty('top', Math.round(r.bottom + 34) + 'px', 'important');
+    en.style.setProperty('top', Math.round(r.bottom + 16) + 'px', 'important');
     en.style.setProperty('left', Math.round(r.left + r.width/2 - w/2) + 'px', 'important');
   }
   window.addEventListener('resize', ()=>setTimeout(put,0));
