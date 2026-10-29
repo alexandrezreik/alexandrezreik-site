@@ -2219,6 +2219,10 @@
     #splash:not(.sp-mobile) #splash-enter span{ background:none !important; padding-bottom:0 !important; letter-spacing:0.3em !important; font-size:0.66rem !important; font-weight:500 !important; opacity:1 !important; }
     #splash:not(.sp-mobile) #splash-enter:hover{ border-color:rgba(255,255,255,0.95) !important; background:rgba(255,255,255,0.08) !important; }
   }
+  /* Tirages : mention « vendu sans cadre », lisible (29/10) */
+  .prints-framenote{ display:block; margin-top:8px; color:#2a2a2a; font-weight:500; }
+  .pd-framenote{ font-family:'Figtree','Inter',sans-serif; font-size:clamp(0.78rem, min(0.92vw, 1.8vh), 0.86rem); line-height:1.55; color:#2a2a2a; font-weight:500;
+    margin:clamp(6px,1.2vh,12px) 0 clamp(10px,1.8vh,16px); padding:8px 0 8px 12px; border-left:2px solid #2a2a2a; }
 </style>
 </head>
 <body>
@@ -3099,6 +3103,7 @@ const PRINT_EMAIL = 'alexandre.zreik@gmail.com';
 const PRINT_TXT = {
   en: {
     intro: 'Original photographs, printed as limited editions, numbered and signed.',
+    frameNote: 'Frames are shown for illustration only — prints are sold unframed. Framing available on request.',
     desc: 'Original photograph, printed by Nation Photo and signed by Alexandre Zreik.',
     bullets: ['Fine art print on archival paper', 'Numbered and signed by the photographer', 'Limited edition of ' + PRINT_EDITION + ' copies', 'Printed with white margins', 'Frame not included', 'Other sizes on request'],
     from: 'from', format: 'Format', qty: 'Quantity', order: 'Order', back: '← All prints', total: 'Total',
@@ -3109,6 +3114,7 @@ const PRINT_TXT = {
   },
   fr: {
     intro: 'Photographies originales, tirées en édition limitée, numérotées et signées.',
+    frameNote: 'Les cadres sont présentés à titre indicatif — les tirages sont vendus sans cadre. Encadrement possible sur demande.',
     desc: 'Photographie originale, tirée par Nation Photo et signée par Alexandre Zreik.',
     bullets: ['Tirage fine art sur papier d’archive', 'Numéroté et signé par le photographe', 'Édition limitée à ' + PRINT_EDITION + ' exemplaires', 'Imprimé avec marges blanches', 'Cadre non inclus', 'Autres formats sur demande'],
     from: 'à partir de', format: 'Format', qty: 'Quantité', order: 'Commander', back: '← Tous les tirages', total: 'Total',
@@ -3204,7 +3210,7 @@ async function renderPrintsPage(){
   document.getElementById('seriesTitle').textContent = '';
   const content = document.getElementById('content');
   const T = PRINT_TXT[_printLang];
-  content.innerHTML = '<div class="prints-page"><div class="prints-head"><div class="text-page-heading">Prints</div>' + langSwitch() + '</div><p class="prints-intro">' + T.intro + '</p><div class="prints-wall"><div class="prints-wall-light"></div><div class="prints-grid" id="printsGrid"></div></div></div>';
+  content.innerHTML = '<div class="prints-page"><div class="prints-head"><div class="text-page-heading">Prints</div>' + langSwitch() + '</div><p class="prints-intro">' + T.intro + '<span class="prints-framenote">' + T.frameNote + '</span></p><div class="prints-wall"><div class="prints-wall-light"></div><div class="prints-grid" id="printsGrid"></div></div></div>';
   bindLang(renderPrintsPage);
   const items = await loadPrints();
   if (currentKey !== '__prints__') return;
@@ -3254,6 +3260,7 @@ function renderPrintDetail(it){
         '<div class="pd-from">' + T.from + ' ' + money(PRINT_FORMATS[0][1]) + '</div>' +
         '<p class="pd-desc">' + T.desc + '</p>' +
         '<ul class="pd-list">' + T.bullets.map(x => '<li>' + x + '</li>').join('') + '</ul>' +
+        '<p class="pd-framenote">' + T.frameNote + '</p>' +
         '<div class="pd-form">' +
           '<label><span>' + T.format + '</span><select id="pdFormat">' + opts + '</select></label>' +
           '<label><span>' + T.qty + '</span><input type="number" id="pdQty" min="1" max="10" value="1"></label>' +
